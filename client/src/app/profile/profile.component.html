@@ -1,0 +1,37 @@
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-2 side-nav p-0">
+      <ul class="position-fixed list-group list-group-flush">
+        <li>
+          <a class="text-light" routerLink="/profile"><h3 class="p-3">Dashboard</h3></a>
+        </li>
+        <li>
+          <p class="pl-3"> Welcome back {{ details?.name }}</p>
+        </li>
+        
+        <li>
+          <a class="list-group-item list-group-item-action" (click)="setActiveComp('library')">Library</a>
+        </li>
+
+        <li>
+          <a class="list-group-item list-group-item-action" routerLink="topics">Your Topics</a>
+        </li>
+
+        <li>
+          <a class="list-group-item list-group-item-action" >Explore</a>
+        </li>
+      </ul>
+      
+    </div>
+    <div class="col-md col-md-offset-2 bg-light" [ngSwitch]="activeComponent">
+      <label>Email</label>
+      <p>{{ details?.email }}</p>
+
+      <app-topics *ngSwitchCase="'explore'"></app-topics>
+
+      <router-outlet></router-outlet>
+
+    </div>
+  </div>
+</div>
