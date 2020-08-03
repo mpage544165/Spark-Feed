@@ -1,0 +1,6 @@
+
+.fold {
+    height: 100vh;
+    background: rgb(60,181,205);
+    background: linear-gradient(0deg, rgba(60,181,205,1) 0%, rgba(0,111,167,1) 100%);
+}
