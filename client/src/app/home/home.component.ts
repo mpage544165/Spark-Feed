@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ArticleService, Article } from '../article.service';
+import { AuthenticationService } from '../authentication.service';
 
 @Component({
   selector: 'app-home',
@@ -8,11 +9,15 @@ import { ArticleService, Article } from '../article.service';
 })
 export class HomeComponent implements OnInit {
 
+  name: string;
   articles: Article[] = [];
 
-  constructor(private articleService: ArticleService) { }
+  constructor(private articleService: ArticleService, private auth:AuthenticationService) { }
 
   ngOnInit(): void {
+    if (this.auth.getUserDetails()) {
+      this.name = this.auth.getUserDetails().name;
+    }
     this.getArticle();
   }
 

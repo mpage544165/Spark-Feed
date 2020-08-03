@@ -1,33 +1,53 @@
-<div class="container">
-  
-    <h1>Hello there</h1>
-  
-    <p>Won't you please <a routerLink="/login">sign in</a> or <a routerLink="/register">register</a>?</p>
 
-    <div id="demo" class="carousel slide" data-ride="carousel" data-interval="5500">
+  <div class=" container-fluid fold">
 
-      <h1>Top Stories</h1>
+    <h1 class="text-light text-center pt-4">Top Stories</h1>
+
+    <div class="d-flex justify-content-center flex-wrap">
+      
+      <div class="top-stories">
+
+        <div id="top-stories" class="carousel slide" data-ride="carousel" data-interval="5500">
+        
+          <!-- The slideshow -->
+          <div class="carousel-inner">
     
-      <!-- The slideshow -->
-      <div class="carousel-inner">
+            <div class="carousel-item active" *ngIf="articles[0]">
+              <a class="text-light" href={{articles[0].url}}><h3 class="text-center m-3">{{ articles[0].title }}</h3></a>
+              <img class="carousel-img shadow" src={{articles[0].urlToImage}} alt="" width="100px" height="100px">
+            </div>
 
-        <div class="carousel-item active">
-          <!--<p>{{ article.content }}</p>-->
+            <div class="carousel-item" *ngFor="let article of articles.slice(1)">
+              <a class="text-light" href={{article.url}}><h3 class="text-center m-3">{{ article.title }}</h3></a>
+              <img class="carousel-img shadow" src={{article.urlToImage}} alt="" width="100px" height="100px">
+              <!--<p>{{ article.content }}</p>--> 
+            </div>
+        
+            <!-- Left and right controls -->
+            <a class="carousel-control-prev" href="#top-stories" data-slide="prev">
+              <span class="carousel-control-prev-icon"></span>
+            </a>
+            <a class="carousel-control-next" href="#top-stories" data-slide="next">
+              <span class="carousel-control-next-icon"></span>
+            </a>
+          </div>
+
         </div>
-        <div class="carousel-item" *ngFor="let article of articles.slice(1)">
-          <a class="text-dark" href={{article.url}}><h3 class="text-center m-3">{{ article.title }}</h3></a>
-          <img class="rounded-circle carousel-img" src={{article.urlToImage}} alt="" width="400px" height="400px">
-          <!--<p>{{ article.content }}</p>--> 
-        </div>
-    
-      <!-- Left and right controls -->
-      <a class="carousel-control-prev" href="#demo" data-slide="prev">
-        <span class="carousel-control-prev-icon"></span>
-      </a>
-      <a class="carousel-control-next" href="#demo" data-slide="next">
-        <span class="carousel-control-next-icon"></span>
-      </a>
-    
+      </div>
     </div>
-  
+
+    <div class="float-bottom">
+      <h1 class="text-center" *ngIf="!auth.isLoggedIn()">Welcome to Spark Feed</h1>
+      <h1 class="text-center" *ngIf="auth.isLoggedIn()">Welcome Back {{ name }}</h1>
+      <div class="d-flex justify-content-center">
+        <button type="button" class="btn btn-lg btn-light m-3 shadow" routerLink="/register" *ngIf="!auth.isLoggedIn()">Signup</button>
+        <button type="button" class="btn btn-lg btn-outline-light text-dark m-3 shadow" routerLink="/login" *ngIf="!auth.isLoggedIn()">Login</button>
+        <button type="button" class="btn btn-lg btn-light text-dark m-3 shadow" routerLink="/profile" *ngIf="auth.isLoggedIn()">Dashboard</button>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="container">
+    <h1>Features</h1>
   </div>
