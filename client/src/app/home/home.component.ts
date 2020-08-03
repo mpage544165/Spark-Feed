@@ -12,7 +12,7 @@ export class HomeComponent implements OnInit {
   name: string;
   articles: Article[] = [];
 
-  constructor(private articleService: ArticleService, private auth:AuthenticationService) { }
+  constructor(private articleService: ArticleService, public auth:AuthenticationService) { }
 
   ngOnInit(): void {
     if (this.auth.getUserDetails()) {
