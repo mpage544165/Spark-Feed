@@ -14,6 +14,7 @@ import { AuthGuardService } from './auth-guard.service';
 import { ArticleService } from './article.service';
 import { TopicsComponent } from './topics/topics.component';
 import { TopicComponent } from './topic/topic.component';
+import { ExploreComponent } from './explore/explore.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -22,7 +23,8 @@ const routes: Routes = [
   { path: 'profile', component: ProfileComponent, canActivate: [AuthGuardService], 
       children: [
         { path: 'topics', component: TopicsComponent },
-        { path: 'topic/:selectedTopic', component: TopicComponent }
+        { path: 'topic/:selectedTopic', component: TopicComponent },
+        { path: 'explore', component: ExploreComponent}
       ] 
   },
   
@@ -36,7 +38,8 @@ const routes: Routes = [
     ProfileComponent,
     HomeComponent,
     TopicsComponent,
-    TopicComponent
+    TopicComponent,
+    ExploreComponent
   ],
   imports: [
     BrowserModule,
