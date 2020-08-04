@@ -22,4 +22,8 @@ export class TopicComponent implements OnInit {
     }) 
   }
 
+  saveToLibrary(index) {
+    this.articleService.saveArticle(this.articles[index].url);
+  }
+
 }

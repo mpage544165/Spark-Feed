@@ -39,7 +39,11 @@ export class ArticleService {
   }
 
   public getArticlesByTopic(topic) {
+    let isoDate = new Date();
+    isoDate.setDate(isoDate.getDate() - 31);
+
     let url = `http://newsapi.org/v2/everything?q=${topic}&` +
+              //`from=${isoDate.toISOString()}&to=${isoDate.toISOString()}&sortBy=popularity&` +
               'apiKey=04727d2ac11b4976bccf652ca5f80782';
 
     return this.http.get(url);
@@ -48,5 +52,26 @@ export class ArticleService {
   changeTopicsDictinary(topic: string, data) {
     this.topicsDictionary[topic] = data;
     this.articleSource.next(this.topicsDictionary);
+  }
+
+  public saveArticle(url) {
+    //get article html
+    //this.http.get(url).subscribe(res => {
+      const data = {
+        url: url
+      }
+      //post to api with article html as data
+      this.http.post('api/articles/save', data, { headers: { Authorization: `Bearer ${this.auth.getToken()}`}})
+      .subscribe(res => {
+        console.log(res);
+      });
+    //});
+  }
+
+  public getUserArticles() {
+    this.http.get('api/articles', { headers: { Authorization: `Bearer ${this.auth.getToken()}`}})
+      .subscribe(res => {
+        console.log(res);
+      })
   }
 }

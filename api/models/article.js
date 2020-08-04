@@ -3,7 +3,6 @@ var mongoose = require('mongoose');
 var articleSchema = new mongoose.Schema({
     userId: {
         type: String,
-        unique: true,
         required: true
     },
     title: {

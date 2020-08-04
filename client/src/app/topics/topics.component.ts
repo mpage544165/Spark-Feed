@@ -27,7 +27,6 @@ export class TopicsComponent implements OnInit {
       this.articleService.getArticlesByTopic(this.topics[i])
       .subscribe(data => {
         console.log(data);
-        console.log(this.topics);
         this.topicsDictionary[this.topics[i]] = data;
         console.log(this.topicsDictionary[this.topics[i]]); 
         this.articleService.changeTopicsDictinary(this.topics[i], data);
