@@ -69,9 +69,6 @@ export class ArticleService {
   }
 
   public getUserArticles() {
-    this.http.get('api/articles', { headers: { Authorization: `Bearer ${this.auth.getToken()}`}})
-      .subscribe(res => {
-        console.log(res);
-      })
+    return this.http.get('api/articles', { headers: { Authorization: `Bearer ${this.auth.getToken()}`}});
   }
 }

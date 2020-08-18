@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ArticleService } from '../article.service';
 
 @Component({
   selector: 'app-explore',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ExploreComponent implements OnInit {
 
-  constructor() { }
+  constructor(private articleService:ArticleService) { }
+
+  articles = [];
 
   ngOnInit(): void {
+    this.articleService.getUserArticles()
+      .subscribe(data => {
+        console.log(data);
+      })
   }
 
 }
